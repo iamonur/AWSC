@@ -1,0 +1,192 @@
+[gd_scene load_steps=13 format=3 uid="uid://nmfh4bnuek2y"]
+
+[ext_resource type="Script" path="res://survivors_game.gd" id="1_5l6c7"]
+[ext_resource type="PackedScene" uid="uid://d0c6p8wb11ni7" path="res://player.tscn" id="1_e1mix"]
+[ext_resource type="PackedScene" uid="uid://bk8kojewlr32t" path="res://pine_tree.tscn" id="2_sd30w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jd1bs"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ovapf"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ako1q"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2pnn0"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7euld"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4eqwx"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_0xs3l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -50, -63, 0, 0, 0, 0, 2014, -68, 0, 0, 0, 0, 2025, 1176, 0, 0, 0, 0, -52, 1181, 0, 0, 0, 0, -50, -63)
+}
+point_count = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_4lolo"]
+font_size = 96
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3ub4"]
+font_size = 96
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_5l6c7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -30
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 1917.0
+offset_bottom = 1078.0
+
+[node name="Score_BaseText" type="Label" parent="CanvasLayer"]
+offset_left = 26.0
+offset_top = 27.0
+offset_right = 66.0
+offset_bottom = 50.0
+text = "Score: "
+label_settings = SubResource("LabelSettings_jd1bs")
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 225.0
+offset_top = 27.0
+offset_right = 265.0
+offset_bottom = 94.0
+label_settings = SubResource("LabelSettings_ovapf")
+
+[node name="MobsSpawned_BaseText" type="Label" parent="CanvasLayer"]
+offset_left = 26.0
+offset_top = 87.0
+offset_right = 227.0
+offset_bottom = 154.0
+text = "Spawns: "
+label_settings = SubResource("LabelSettings_ako1q")
+
+[node name="Mobs_Spawned" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 227.0
+offset_top = 87.0
+offset_right = 267.0
+offset_bottom = 154.0
+label_settings = SubResource("LabelSettings_2pnn0")
+
+[node name="Alive_BaseText" type="Label" parent="CanvasLayer"]
+offset_left = 26.0
+offset_top = 154.0
+offset_right = 151.0
+offset_bottom = 221.0
+text = "Alive:"
+label_settings = SubResource("LabelSettings_7euld")
+
+[node name="Alive" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 227.0
+offset_top = 154.0
+offset_right = 267.0
+offset_bottom = 177.0
+label_settings = SubResource("LabelSettings_4eqwx")
+
+[node name="Player" parent="." instance=ExtResource("1_e1mix")]
+position = Vector2(960, 543)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-960, -543)
+curve = SubResource("Curve2D_0xs3l")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(745.489, -64.9271)
+rotation = -0.00242248
+progress = 795.49
+
+[node name="PineTree" parent="." instance=ExtResource("2_sd30w")]
+position = Vector2(1276, 307)
+
+[node name="PineTree2" parent="." instance=ExtResource("2_sd30w")]
+position = Vector2(1363, 309)
+
+[node name="PineTree3" parent="." instance=ExtResource("2_sd30w")]
+position = Vector2(1316, 336)
+
+[node name="PineTree4" parent="." instance=ExtResource("2_sd30w")]
+position = Vector2(195, 564)
+
+[node name="PineTree5" parent="." instance=ExtResource("2_sd30w")]
+position = Vector2(775, 239)
+
+[node name="PineTree6" parent="." instance=ExtResource("2_sd30w")]
+position = Vector2(823, 919)
+
+[node name="PineTree7" parent="." instance=ExtResource("2_sd30w")]
+position = Vector2(1594, 767)
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+autostart = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.67451)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_4lolo")
+
+[node name="Button" type="Button" parent="GameOver"]
+offset_left = 885.0
+offset_top = 719.0
+offset_right = 1053.0
+offset_bottom = 813.0
+text = "Restart"
+
+[node name="EndScore" type="Label" parent="GameOver"]
+unique_name_in_owner = true
+offset_left = 909.0
+offset_top = 587.0
+offset_right = 949.0
+offset_bottom = 719.0
+label_settings = SubResource("LabelSettings_p3ub4")
+
+[node name="TreeTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOver/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="TreeTimer" to="." method="_on_tree_timer_timeout"]
